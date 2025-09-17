@@ -79,9 +79,11 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                 <span className="text-sm font-medium">(54) 99335-9191</span>
               </a>
               <ThemeToggle />
-              <Button className="btn-hero">
-                Solicitar Orçamento
-              </Button>
+              <Link to="/contato">
+                <Button className="btn-hero">
+                  Solicitar Orçamento
+                </Button>
+              </Link>
             </div>
 
             {/* Mobile Menu Button */}
@@ -121,9 +123,11 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                     <Phone className="h-4 w-4 group-hover:scale-110 transition-transform" />
                     <span className="font-medium">(54) 99335-9191</span>
                   </a>
-                  <Button className="btn-hero w-full">
-                    Solicitar Orçamento
-                  </Button>
+                  <Link to="/contato">
+                    <Button className="btn-hero w-full">
+                      Solicitar Orçamento
+                    </Button>
+                  </Link>
                 </div>
               </nav>
             </div>
@@ -220,9 +224,11 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
               <p className="text-primary-foreground/80 leading-relaxed">
                 Garanta eficiência e segurança na climatização da sua empresa.
               </p>
-              <Button variant="premium" className="w-full font-semibold py-3 rounded-xl transition-[var(--transition-bounce)] hover:scale-105">
-                Fale Agora com a Aria
-              </Button>
+              <Link to="/contato">
+                <Button variant="premium" className="w-full font-semibold py-3 rounded-xl transition-[var(--transition-bounce)] hover:scale-105">
+                  Fale Agora com a Aria
+                </Button>
+              </Link>
             </div>
           </div>
 

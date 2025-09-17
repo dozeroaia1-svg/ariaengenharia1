@@ -111,13 +111,17 @@ const Home = () => {
               Tecnologia, inovação e credibilidade para garantir o melhor desempenho dos seus sistemas de climatização.
             </p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center slide-right">
-              <Button size="lg" className="btn-hero text-xl px-12 py-6 text-white font-bold">
-                Solicitar Orçamento
-                <ArrowRight className="ml-3 h-6 w-6" />
-              </Button>
-              <Button variant="glass" size="lg" className="text-xl px-12 py-6 font-semibold">
-                Nossos Serviços
-              </Button>
+              <Link to="/contato">
+                <Button size="lg" className="btn-hero text-xl px-12 py-6 text-white font-bold">
+                  Solicitar Orçamento
+                  <ArrowRight className="ml-3 h-6 w-6" />
+                </Button>
+              </Link>
+              <Link to="/servicos">
+                <Button variant="glass" size="lg" className="text-xl px-12 py-6 font-semibold">
+                  Nossos Serviços
+                </Button>
+              </Link>
             </div>
           </div>
         </div>
@@ -161,7 +165,7 @@ const Home = () => {
       </section>
 
       {/* CARROSSEL DE CLIENTES - DIRETAMENTE AQUI */}
-      <section style={{backgroundColor: '#f8f9fa', padding: '80px 0', minHeight: '300px'}}>
+      <section className="py-20 bg-secondary/30 dark:bg-secondary/10">
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold mb-6 text-foreground">
@@ -179,11 +183,11 @@ const Home = () => {
                   key={index}
                   className="flex-shrink-0 w-48 h-24 flex items-center justify-center"
                 >
-                  <div className="bg-white rounded-xl shadow-lg p-6 w-full h-full flex items-center justify-center hover:shadow-xl transition-shadow">
+                  <div className="bg-card rounded-xl shadow-lg p-6 w-full h-full flex items-center justify-center hover:shadow-xl transition-shadow border border-border/20">
                     <img
                       src={client.logo}
                       alt={client.name}
-                      className="max-w-full max-h-full object-contain"
+                      className="max-w-full max-h-full object-contain filter dark:brightness-90"
                       style={{maxWidth: '140px', maxHeight: '70px'}}
                     />
                   </div>
@@ -230,10 +234,12 @@ const Home = () => {
             <p className="text-lg sm:text-xl mb-8 text-white/90 px-4">
               Entre em contato conosco e descubra como podemos otimizar seus sistemas de climatização com tecnologia de ponta e serviços especializados.
             </p>
-            <Button size="lg" variant="secondary" className="text-lg px-8 py-4 font-semibold">
-              Fale Agora com a Aria Engenharia
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
+            <Link to="/contato">
+              <Button size="lg" variant="secondary" className="text-lg px-8 py-4 font-semibold">
+                Fale Agora com a Aria Engenharia
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
