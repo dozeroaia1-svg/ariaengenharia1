@@ -177,18 +177,18 @@ const Home = () => {
           </div>
           
           <div className="overflow-hidden">
-            <div className="flex animate-scroll-left gap-12">
+            <div className="flex animate-scroll-left will-change-[transform] gap-2 sm:gap-6 md:gap-12">
               {[...clientLogos, ...clientLogos].map((client, index) => (
                 <div
                   key={index}
-                  className="flex-shrink-0 w-48 h-24 flex items-center justify-center"
+                  className="flex-shrink-0 w-28 h-16 sm:w-36 sm:h-20 md:w-48 md:h-24 flex items-center justify-center"
                 >
-                  <div className="bg-card rounded-xl shadow-lg p-6 w-full h-full flex items-center justify-center hover:shadow-xl transition-shadow border border-border/20">
+                  <div className="bg-card rounded-xl shadow-lg p-2 sm:p-4 md:p-6 w-full h-full flex items-center justify-center hover:shadow-xl transition-shadow border border-border/20">
                     <img
                       src={client.logo}
                       alt={client.name}
-                      className="max-w-full max-h-full object-contain filter dark:brightness-90"
-                      style={{maxWidth: '140px', maxHeight: '70px'}}
+                      className="w-auto object-contain filter dark:brightness-90 max-h-8 sm:max-h-12 md:max-h-16"
+                      loading="lazy"
                     />
                   </div>
                 </div>
