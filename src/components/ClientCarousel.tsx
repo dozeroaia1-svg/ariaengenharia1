@@ -25,7 +25,7 @@ const ClientCarousel = () => {
   console.log('ClientCarousel rendering!');
 
   return (
-    <section className="py-16 bg-secondary/10" style={{minHeight: '200px', backgroundColor: '#f0f0f0'}}>
+    <section className="py-16 bg-secondary/30 dark:bg-secondary/10">
       <div className="max-w-7xl mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold mb-6 text-foreground">
@@ -37,22 +37,22 @@ const ClientCarousel = () => {
         </div>
         
         <div className="overflow-hidden">
-          <div className="flex animate-scroll-left gap-8">
+          <div className="flex will-change-transform animate-[scroll-left_28s_linear_infinite] sm:animate-[scroll-left_22s_linear_infinite] md:animate-[scroll-left_18s_linear_infinite] gap-4 sm:gap-8">
             {duplicatedClients.map((client, index) => (
               <div
                 key={`client-${index}`}
-                className="flex-shrink-0 w-48 h-24 flex items-center justify-center"
-                style={{border: '2px solid red'}}
+                className="flex-shrink-0 w-32 h-16 sm:w-40 sm:h-20 md:w-48 md:h-24 flex items-center justify-center"
               >
-                <div className="bg-white rounded-lg shadow-lg p-4 w-full h-full flex items-center justify-center">
+                <div className="bg-card rounded-lg shadow-lg p-3 sm:p-4 w-full h-full flex items-center justify-center border border-border/20">
                   <img
                     src={client.logo}
                     alt={client.name}
-                    className="max-w-full max-h-full object-contain"
-                    style={{maxWidth: '120px', maxHeight: '60px'}}
+                    className="w-auto max-h-10 sm:max-h-12 md:max-h-16 object-contain"
+                    loading="lazy"
+                    decoding="async"
                     onError={(e) => {
                       console.error('Failed to load image:', client.name, client.logo);
-                      e.currentTarget.style.display = 'none';
+                      (e.currentTarget as HTMLImageElement).style.display = 'none';
                     }}
                     onLoad={() => {
                       console.log('Image loaded:', client.name);

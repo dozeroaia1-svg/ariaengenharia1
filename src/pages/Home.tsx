@@ -111,12 +111,14 @@ const Home = () => {
               Tecnologia, inovação e credibilidade para garantir o melhor desempenho dos seus sistemas de climatização.
             </p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center slide-right">
-              <Link to="/contato">
-                <Button size="lg" className="btn-hero text-xl px-12 py-6 text-white font-bold">
-                  Solicitar Orçamento
-                  <ArrowRight className="ml-3 h-6 w-6" />
-                </Button>
-              </Link>
+              <Button 
+                size="lg" 
+                className="btn-hero text-xl px-12 py-6 text-white font-bold"
+                onClick={() => window.open('https://wa.link/t4g2l5', '_blank')}
+              >
+                Solicitar Orçamento
+                <ArrowRight className="ml-3 h-6 w-6" />
+              </Button>
               <Link to="/servicos">
                 <Button variant="glass" size="lg" className="text-xl px-12 py-6 font-semibold">
                   Nossos Serviços
@@ -177,7 +179,7 @@ const Home = () => {
           </div>
           
           <div className="overflow-hidden">
-            <div className="flex animate-scroll-left will-change-[transform] gap-2 sm:gap-6 md:gap-12">
+            <div className="flex will-change-transform gap-2 sm:gap-6 md:gap-12 animate-[scroll-left_28s_linear_infinite] sm:animate-[scroll-left_22s_linear_infinite] md:animate-[scroll-left_18s_linear_infinite]">
               {[...clientLogos, ...clientLogos].map((client, index) => (
                 <div
                   key={index}

@@ -79,11 +79,11 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                 <span className="text-sm font-medium">(54) 99335-9191</span>
               </a>
               <ThemeToggle />
-              <Link to="/contato">
+              <a href="https://wa.link/t4g2l5" target="_blank" rel="noopener noreferrer">
                 <Button className="btn-hero">
                   Solicitar Orçamento
                 </Button>
-              </Link>
+              </a>
             </div>
 
             {/* Mobile Menu Button */}
@@ -123,11 +123,11 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                     <Phone className="h-4 w-4 group-hover:scale-110 transition-transform" />
                     <span className="font-medium">(54) 99335-9191</span>
                   </a>
-                  <Link to="/contato">
+                  <a href="https://wa.link/t4g2l5" target="_blank" rel="noopener noreferrer">
                     <Button className="btn-hero w-full">
                       Solicitar Orçamento
                     </Button>
-                  </Link>
+                  </a>
                 </div>
               </nav>
             </div>
