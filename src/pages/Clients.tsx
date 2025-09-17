@@ -175,41 +175,6 @@ const Clients = () => {
         </div>
       </section>
 
-      {/* Testimonials */}
-      <section className="section-padding">
-        <div className="container-custom">
-          <div className="text-center mb-16 fade-in">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-foreground">
-              O que Nossos Clientes Dizem
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Depoimentos reais de clientes que experimentaram a qualidade dos nossos serviços.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <Card key={index} className="card-glass scale-in group">
-                <CardContent className="p-8">
-                  <div className="flex mb-4">
-                    {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star key={i} className="h-5 w-5 text-yellow-400 fill-current icon-bounce" />
-                    ))}
-                  </div>
-                  <blockquote className="text-muted-foreground mb-6 leading-relaxed italic group-hover:text-foreground transition-colors">
-                    "{testimonial.content}"
-                  </blockquote>
-                  <div className="border-t border-border pt-4">
-                    <div className="font-semibold text-foreground">{testimonial.name}</div>
-                    <div className="text-sm text-muted-foreground">{testimonial.position}</div>
-                    <div className="text-sm text-primary font-medium">{testimonial.company}</div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
 
 
       {/* CTA Section */}
@@ -223,11 +188,21 @@ const Clients = () => {
               Faça parte do grupo de empresas que escolheram a excelência da Aria Engenharia para suas soluções de climatização.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button className="btn-hero text-lg px-8 py-4 font-semibold">
+              <Button 
+                className="btn-hero text-lg px-8 py-4 font-semibold"
+                onClick={() => window.open('https://wa.me/5551999999999', '_blank')}
+              >
                 Solicitar Orçamento
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
-              <Button variant="glass" className="text-lg px-8 py-4 font-semibold">
+              <Button 
+                variant="glass" 
+                className="text-lg px-8 py-4 font-semibold"
+                onClick={() => {
+                  window.location.href = '/servicos';
+                  setTimeout(() => window.scrollTo(0, 0), 100);
+                }}
+              >
                 Falar com Consultor
               </Button>
             </div>
