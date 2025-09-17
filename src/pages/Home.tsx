@@ -178,11 +178,12 @@ const Home = () => {
             </p>
           </div>
           
-          <div className="overflow-hidden">
-            <div className="flex will-change-transform gap-2 sm:gap-6 md:gap-12 animate-[scroll-left_28s_linear_infinite] sm:animate-[scroll-left_22s_linear_infinite] md:animate-[scroll-left_18s_linear_infinite]">
-              {[...clientLogos, ...clientLogos].map((client, index) => (
+          <div className="relative overflow-hidden h-16 sm:h-20 md:h-24">
+            {/* Track A */}
+            <div className="absolute left-0 top-0 flex gap-3 sm:gap-6 md:gap-12 min-w-max will-change-transform animate-[marquee_12s_linear_infinite] sm:animate-[marquee_10s_linear_infinite] md:animate-[marquee_9s_linear_infinite]">
+              {clientLogos.map((client, index) => (
                 <div
-                  key={index}
+                  key={`a-${index}`}
                   className="flex-shrink-0 w-28 h-16 sm:w-36 sm:h-20 md:w-48 md:h-24 flex items-center justify-center"
                 >
                   <div className="bg-card rounded-xl shadow-lg p-2 sm:p-4 md:p-6 w-full h-full flex items-center justify-center hover:shadow-xl transition-shadow border border-border/20">
@@ -191,6 +192,26 @@ const Home = () => {
                       alt={client.name}
                       className="w-auto object-contain filter dark:brightness-90 max-h-8 sm:max-h-12 md:max-h-16"
                       loading="lazy"
+                      decoding="async"
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
+            {/* Track B (seamless) */}
+            <div className="absolute left-0 top-0 flex gap-3 sm:gap-6 md:gap-12 min-w-max will-change-transform animate-[marquee2_12s_linear_infinite] sm:animate-[marquee2_10s_linear_infinite] md:animate-[marquee2_9s_linear_infinite]">
+              {clientLogos.map((client, index) => (
+                <div
+                  key={`b-${index}`}
+                  className="flex-shrink-0 w-28 h-16 sm:w-36 sm:h-20 md:w-48 md:h-24 flex items-center justify-center"
+                >
+                  <div className="bg-card rounded-xl shadow-lg p-2 sm:p-4 md:p-6 w-full h-full flex items-center justify-center hover:shadow-xl transition-shadow border border-border/20">
+                    <img
+                      src={client.logo}
+                      alt={client.name}
+                      className="w-auto object-contain filter dark:brightness-90 max-h-8 sm:max-h-12 md:max-h-16"
+                      loading="lazy"
+                      decoding="async"
                     />
                   </div>
                 </div>
