@@ -90,8 +90,8 @@ const Contact = () => {
     {
       icon: Mail,
       title: 'E-mail',
-      content: 'contato@ariaengenharia.com.br',
-      action: 'mailto:contato@ariaengenharia.com.br'
+      content: 'contato@ariaeng.com.br',
+      action: 'mailto:contato@ariaeng.com.br'
     },
     {
       icon: MapPin,

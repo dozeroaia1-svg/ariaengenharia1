@@ -28,8 +28,8 @@ const handler = async (req: Request): Promise<Response> => {
     console.log("Sending contact form email:", { name, email, phone });
 
     const emailResponse = await resend.emails.send({
-      from: "Formulário de Contato <noreply@ariaengenharia.com.br>",
-      to: ["contato@ariaengenharia.com.br"],
+      from: "Formulário de Contato <noreply@ariaeng.com.br>",
+      to: ["contato@ariaeng.com.br"],
       subject: `Nova mensagem de contato - ${name}`,
       html: `
         <h2>Nova mensagem de contato recebida</h2>
