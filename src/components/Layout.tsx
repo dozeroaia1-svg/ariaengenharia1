@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Phone, Mail } from 'lucide-react';
+import { Menu, X, Phone, Mail, Instagram, MessageCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ThemeToggle } from '@/components/ThemeToggle';
 import { ProgressBar } from '@/components/ProgressBar';
@@ -171,7 +171,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                   rel="noopener noreferrer"
                   className="w-10 h-10 bg-accent rounded-full flex items-center justify-center hover:scale-125 transition-transform duration-300 cursor-pointer"
                 >
-                  <span className="text-white font-bold text-sm">ig</span>
+                  <Instagram className="h-5 w-5 text-white" />
                 </a>
                 <a 
                   href="https://wa.link/t4g2l5" 
@@ -179,7 +179,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                   rel="noopener noreferrer"
                   className="w-10 h-10 bg-accent rounded-full flex items-center justify-center hover:scale-125 transition-transform duration-300 cursor-pointer"
                 >
-                  <span className="text-white font-bold text-sm">wa</span>
+                  <MessageCircle className="h-5 w-5 text-white" />
                 </a>
               </div>
             </div>
@@ -235,7 +235,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
           <div className="border-t border-primary-foreground/20 mt-16 pt-8">
             <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
               <p className="text-primary-foreground/60">
-                © 2024 Aria Engenharia. Todos os direitos reservados.
+                © 2025 Aria Engenharia. Todos os direitos reservados.
               </p>
               <p className="text-primary-foreground/60">
                 Desenvolvido com tecnologia e inovação.
