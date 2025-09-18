@@ -123,26 +123,6 @@ const About = () => {
       </section>
 
 
-      {/* Certifications */}
-      <section className="section-padding">
-        <div className="container-custom text-center">
-          <div className="max-w-4xl mx-auto fade-in">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 text-foreground">
-              Certificações e Qualificações
-            </h2>
-            <p className="text-lg sm:text-xl text-muted-foreground mb-12 px-4">
-              Nosso compromisso com a excelência é respaldado por certificações técnicas e qualificações profissionais reconhecidas no mercado.
-            </p>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-8">
-              {['PMOC', 'PPCI', 'ISO 9001', 'ABRAVA'].map((cert, index) => (
-              <div key={index} className="card-glass p-4 sm:p-8 text-center group hover:shadow-[var(--shadow-glow)] transition-all duration-300 scale-in">
-                <div className="text-2xl sm:text-3xl font-bold text-primary group-hover:text-accent transition-colors duration-300 group-hover:scale-110 transform">{cert}</div>
-              </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
     </div>
   );
 };

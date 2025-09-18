@@ -189,10 +189,12 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
               <h4 className="font-semibold text-xl text-accent">Serviços</h4>
               <ul className="space-y-3 text-primary-foreground/80">
                 {['Climatização', 'PMOC', 'Análise Termográfica', 'PPCI', 'Limpeza de Dutos'].map((service) => (
-                  <li key={service} className="flex items-center space-x-3 hover:text-accent transition-colors cursor-pointer group">
-                    <div className="w-2 h-2 bg-accent rounded-full group-hover:scale-125 transition-transform"></div>
-                    <span>{service}</span>
-                  </li>
+                  <Link key={service} to="/servicos">
+                    <li className="flex items-center space-x-3 hover:text-accent transition-colors cursor-pointer group">
+                      <div className="w-2 h-2 bg-accent rounded-full group-hover:scale-125 transition-transform"></div>
+                      <span>{service}</span>
+                    </li>
+                  </Link>
                 ))}
               </ul>
             </div>
@@ -224,11 +226,11 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
               <p className="text-primary-foreground/80 leading-relaxed">
                 Garanta eficiência e segurança na climatização da sua empresa.
               </p>
-              <Link to="/contato">
+              <a href="https://wa.link/t4g2l5" target="_blank" rel="noopener noreferrer">
                 <Button variant="premium" className="w-full font-semibold py-3 rounded-xl transition-[var(--transition-bounce)] hover:scale-105">
                   Fale Agora com a Aria
                 </Button>
-              </Link>
+              </a>
             </div>
           </div>
 
