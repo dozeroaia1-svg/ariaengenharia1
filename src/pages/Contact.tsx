@@ -70,7 +70,7 @@ const Contact = () => {
     {
       icon: MapPin,
       title: 'Endereço',
-      content: 'Rua Exemplo, 123 - São Paulo, SP',
+      content: 'Marau, RS',
       action: null
     },
     {

@@ -213,7 +213,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                   <div className="w-5 h-5 bg-accent rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
                     <span className="text-white text-xs">📍</span>
                   </div>
-                  <span className="font-medium">São Paulo, SP</span>
+                  <span className="font-medium">Marau, RS</span>
                 </div>
               </div>
             </div>
