@@ -201,10 +201,12 @@ const Services = () => {
             <p className="text-xl mb-8 text-white/90">
               Entre em contato conosco e descubra como podemos ajudar sua empresa com soluções de climatização e manutenção de alta qualidade.
             </p>
-            <Button size="lg" className="btn-hero text-lg px-8 py-4 font-semibold">
-              Solicitar Orçamento Agora
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
+            <a href="https://wa.link/t4g2l5" target="_blank" rel="noopener noreferrer">
+              <Button size="lg" className="btn-hero text-lg px-8 py-4 font-semibold">
+                Solicitar Orçamento Agora
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </a>
           </div>
         </div>
       </section>

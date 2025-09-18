@@ -239,7 +239,7 @@ const Contact = () => {
                 <Button 
                   variant="glass-dark" 
                   className="text-primary"
-                  onClick={() => window.open('https://wa.link/t4g2l5')}
+                  onClick={() => window.open('https://wa.link/t4g2l5', '_blank')}
                 >
                   WhatsApp: (54) 99335-9191
                 </Button>
@@ -259,10 +259,12 @@ const Contact = () => {
             <p className="text-lg sm:text-xl mb-8 text-white/90 px-4">
               Nossa equipe de especialistas está pronta para desenvolver a solução ideal para suas necessidades de climatização e manutenção.
             </p>
-            <Button size="lg" className="btn-hero text-lg px-8 py-4 font-semibold">
-              Agendar Consulta Técnica Gratuita
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
+            <a href="https://wa.link/t4g2l5" target="_blank" rel="noopener noreferrer">
+              <Button size="lg" className="btn-hero text-lg px-8 py-4 font-semibold">
+                Agendar Consulta Técnica Gratuita
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </a>
           </div>
         </div>
       </section>

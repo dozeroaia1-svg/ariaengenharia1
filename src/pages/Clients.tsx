@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { Star, Building2, Factory, Hospital, School, ShoppingBag, ArrowRight } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -188,23 +189,20 @@ const Clients = () => {
               Faça parte do grupo de empresas que escolheram a excelência da Aria Engenharia para suas soluções de climatização.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button 
-                className="btn-hero text-lg px-8 py-4 font-semibold"
-                onClick={() => window.open('https://wa.me/5551999999999', '_blank')}
-              >
-                Solicitar Orçamento
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-              <Button 
-                variant="glass" 
-                className="text-lg px-8 py-4 font-semibold"
-                onClick={() => {
-                  window.location.href = '/servicos';
-                  setTimeout(() => window.scrollTo(0, 0), 100);
-                }}
-              >
-                Falar com Consultor
-              </Button>
+              <a href="https://wa.link/t4g2l5" target="_blank" rel="noopener noreferrer">
+                <Button className="btn-hero text-lg px-8 py-4 font-semibold">
+                  Solicitar Orçamento
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+              </a>
+              <Link to="/servicos">
+                <Button 
+                  variant="glass" 
+                  className="text-lg px-8 py-4 font-semibold"
+                >
+                  Ver Nossos Serviços
+                </Button>
+              </Link>
             </div>
           </div>
         </div>
