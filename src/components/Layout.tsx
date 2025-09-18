@@ -209,7 +209,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                 </a>
                 <div className="flex items-center space-x-3 hover:text-accent transition-colors cursor-pointer group">
                   <Mail className="h-5 w-5 group-hover:scale-110 transition-transform" />
-                  <span className="font-medium">contato@ariaengenharia.com.br</span>
+                  <span className="font-medium">contato@ariaeng.com.br</span>
                 </div>
                 <div className="flex items-center space-x-3 hover:text-accent transition-colors cursor-pointer group">
                   <div className="w-5 h-5 bg-accent rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
