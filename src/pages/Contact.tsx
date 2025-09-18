@@ -34,17 +34,43 @@ const Contact = () => {
     return () => observer.disconnect();
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    // Simulate form submission
-    toast({
-      title: "Mensagem enviada com sucesso!",
-      description: "Entraremos em contato em breve.",
-    });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-    // Reset form
-    setFormData({ name: '', email: '', phone: '', message: '' });
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    
+    try {
+      const response = await fetch('https://jziqhzjldgnjastxfzic.supabase.co/functions/v1/send-contact-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        toast({
+          title: "Mensagem enviada com sucesso!",
+          description: "Entraremos em contato em breve.",
+        });
+        // Reset form
+        setFormData({ name: '', email: '', phone: '', message: '' });
+      } else {
+        throw new Error(result.error || 'Erro ao enviar mensagem');
+      }
+    } catch (error) {
+      console.error('Erro ao enviar formulário:', error);
+      toast({
+        title: "Erro ao enviar mensagem",
+        description: "Tente novamente ou entre em contato pelo WhatsApp.",
+        variant: "destructive"
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -206,8 +232,8 @@ const Contact = () => {
                   />
                 </div>
                 
-                <Button type="submit" className="btn-hero w-full">
-                  Enviar Mensagem
+                <Button type="submit" className="btn-hero w-full" disabled={isSubmitting}>
+                  {isSubmitting ? 'Enviando...' : 'Enviar Mensagem'}
                   <Send className="ml-2 h-5 w-5" />
                 </Button>
               </form>
