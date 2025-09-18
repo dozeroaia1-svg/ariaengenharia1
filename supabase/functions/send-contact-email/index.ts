@@ -27,9 +27,10 @@ const handler = async (req: Request): Promise<Response> => {
 
     console.log("Sending contact form email:", { name, email, phone });
 
-    const emailResponse = await resend.emails.send({
-      from: "Formulário de Contato <noreply@ariaeng.com.br>",
+    const { data, error } = await resend.emails.send({
+      from: "Aria Engenharia <onboarding@resend.dev>",
       to: ["contato@ariaeng.com.br"],
+      reply_to: email,
       subject: `Nova mensagem de contato - ${name}`,
       html: `
         <h2>Nova mensagem de contato recebida</h2>
@@ -41,11 +42,17 @@ const handler = async (req: Request): Promise<Response> => {
         <hr>
         <p><small>Mensagem enviada através do site da Aria Engenharia</small></p>
       `,
+      text: `Nova mensagem de contato\n\nNome: ${name}\nE-mail: ${email}\nTelefone: ${phone}\n\nMensagem:\n${message}`,
     });
 
-    console.log("Email sent successfully:", emailResponse);
+    if (error) {
+      console.error("Resend error:", error);
+      throw new Error(error.message || "Falha ao enviar e-mail");
+    }
 
-    return new Response(JSON.stringify({ success: true, id: emailResponse.id }), {
+    console.log("Email sent successfully:", data);
+
+    return new Response(JSON.stringify({ success: true, id: data?.id }), {
       status: 200,
       headers: {
         "Content-Type": "application/json",
