@@ -348,3 +348,20 @@
   90% { opacity: 0.6; }
   50% { transform: translateY(-20px) rotate(180deg); }
 }
+
+a[href*="lovable.dev"],
+iframe[src*="lovable.dev"],
+div[class*="lovable"],
+.lovable-badge,
+[class*="lovable-badge"],
+[id*="lovable-badge"] {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  max-height: 0 !important;
+  max-width: 0 !important;
+  overflow: hidden !important;
+  position: absolute !important;
+  z-index: -9999 !important;
+}
