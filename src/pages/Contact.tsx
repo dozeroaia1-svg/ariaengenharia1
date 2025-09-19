@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
-import { MapPin, Phone, Mail, Clock, Send, ArrowRight } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock, Send, ArrowRight, Paperclip, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
+import { supabase } from '@/integrations/supabase/client';
 import { ParticleEffect } from '@/components/ParticleEffect';
 
 const Contact = () => {
@@ -15,6 +16,8 @@ const Contact = () => {
     phone: '',
     message: ''
   });
+  const [attachedFile, setAttachedFile] = useState<File | null>(null);
+  const [isUploading, setIsUploading] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -41,12 +44,36 @@ const Contact = () => {
     setIsSubmitting(true);
     
     try {
+      let attachmentPath = null;
+      
+      // Upload do arquivo se houver
+      if (attachedFile) {
+        setIsUploading(true);
+        const fileExt = attachedFile.name.split('.').pop();
+        const fileName = `${Date.now()}-${Math.random().toString(36).substring(7)}.${fileExt}`;
+        
+        const { data: uploadData, error: uploadError } = await supabase.storage
+          .from('contact-attachments')
+          .upload(fileName, attachedFile);
+
+        if (uploadError) {
+          console.error('Erro no upload:', uploadError);
+          throw new Error('Falha ao enviar anexo');
+        }
+        
+        attachmentPath = uploadData.path;
+        setIsUploading(false);
+      }
+
       const response = await fetch('https://jziqhzjldgnjastxfzic.supabase.co/functions/v1/send-contact-email', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          attachmentPath
+        }),
       });
 
       const result = await response.json();
@@ -58,6 +85,7 @@ const Contact = () => {
         });
         // Reset form
         setFormData({ name: '', email: '', phone: '', message: '' });
+        setAttachedFile(null);
       } else {
         throw new Error(result.error || 'Erro ao enviar mensagem');
       }
@@ -70,6 +98,7 @@ const Contact = () => {
       });
     } finally {
       setIsSubmitting(false);
+      setIsUploading(false);
     }
   };
 
@@ -78,6 +107,44 @@ const Contact = () => {
       ...prev,
       [e.target.name]: e.target.value
     }));
+  };
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      // Validar tamanho do arquivo (máximo 10MB)
+      if (file.size > 10 * 1024 * 1024) {
+        toast({
+          title: "Arquivo muito grande",
+          description: "O arquivo deve ter no máximo 10MB.",
+          variant: "destructive"
+        });
+        return;
+      }
+      
+      // Validar tipos de arquivo permitidos
+      const allowedTypes = [
+        'image/jpeg', 'image/png', 'image/webp', 'image/gif',
+        'application/pdf', 
+        'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+        'application/vnd.ms-excel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+      ];
+      
+      if (!allowedTypes.includes(file.type)) {
+        toast({
+          title: "Tipo de arquivo não suportado",
+          description: "Apenas imagens (JPG, PNG, WebP, GIF), PDF e documentos do Office são permitidos.",
+          variant: "destructive"
+        });
+        return;
+      }
+      
+      setAttachedFile(file);
+    }
+  };
+
+  const removeFile = () => {
+    setAttachedFile(null);
   };
 
   const contactInfo = [
@@ -231,9 +298,64 @@ const Contact = () => {
                     className="w-full glass-card border-white/20"
                   />
                 </div>
+
+                {/* Campo de anexo */}
+                <div>
+                  <label className="block text-sm font-medium text-foreground mb-2">
+                    Anexar arquivo (opcional)
+                  </label>
+                  <div className="space-y-3">
+                    {!attachedFile ? (
+                      <div className="relative">
+                        <input
+                          type="file"
+                          id="attachment"
+                          onChange={handleFileChange}
+                          className="hidden"
+                          accept="image/*,.pdf,.doc,.docx,.xls,.xlsx"
+                        />
+                        <label
+                          htmlFor="attachment"
+                          className="flex items-center justify-center w-full p-4 border-2 border-dashed border-white/20 rounded-lg cursor-pointer hover:border-primary/50 transition-colors glass-card"
+                        >
+                          <div className="text-center">
+                            <Paperclip className="h-8 w-8 mx-auto mb-2 text-muted-foreground" />
+                            <p className="text-sm text-muted-foreground">
+                              Clique para anexar imagem ou documento
+                            </p>
+                            <p className="text-xs text-muted-foreground mt-1">
+                              Máx. 10MB - JPG, PNG, PDF, DOC, XLS
+                            </p>
+                          </div>
+                        </label>
+                      </div>
+                    ) : (
+                      <div className="flex items-center justify-between p-3 bg-primary/10 rounded-lg">
+                        <div className="flex items-center gap-2">
+                          <Paperclip className="h-4 w-4 text-primary" />
+                          <span className="text-sm text-foreground truncate">
+                            {attachedFile.name}
+                          </span>
+                          <span className="text-xs text-muted-foreground">
+                            ({(attachedFile.size / 1024 / 1024).toFixed(1)} MB)
+                          </span>
+                        </div>
+                        <Button
+                          type="button"
+                          variant="ghost"
+                          size="sm"
+                          onClick={removeFile}
+                          className="h-8 w-8 p-0 hover:bg-destructive/20 hover:text-destructive"
+                        >
+                          <X className="h-4 w-4" />
+                        </Button>
+                      </div>
+                    )}
+                  </div>
+                </div>
                 
-                <Button type="submit" className="btn-hero w-full" disabled={isSubmitting}>
-                  {isSubmitting ? 'Enviando...' : 'Enviar Mensagem'}
+                <Button type="submit" className="btn-hero w-full" disabled={isSubmitting || isUploading}>
+                  {isUploading ? 'Enviando arquivo...' : isSubmitting ? 'Enviando mensagem...' : 'Enviar Mensagem'}
                   <Send className="ml-2 h-5 w-5" />
                 </Button>
               </form>
