@@ -1,10 +1,34 @@
-import { useEffect } from 'react';
-import { Thermometer, Settings, Eye, Activity, Waves, ShieldCheck, Droplets, Wind, ArrowRight } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { Thermometer, Settings, Eye, Activity, Waves, ShieldCheck, Droplets, Wind, ArrowRight, X } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { ParticleEffect } from '@/components/ParticleEffect';
 
+// Import service photos
+import foto1 from '@/assets/services/foto-1.jpg';
+import foto2 from '@/assets/services/foto-2.jpg';
+import foto3 from '@/assets/services/foto-3.jpg';
+import foto4 from '@/assets/services/foto-4.jpg';
+import foto5 from '@/assets/services/foto-5.jpg';
+import foto6 from '@/assets/services/foto-6.jpg';
+import foto7 from '@/assets/services/foto-7.jpg';
+import foto8 from '@/assets/services/foto-8.jpg';
+import foto9 from '@/assets/services/foto-9.jpg';
+
 const Services = () => {
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  
+  const servicePhotos = [
+    { src: foto1, alt: 'Sistema de climatização Carrier' },
+    { src: foto2, alt: 'Análise termográfica de ar condicionado' },
+    { src: foto3, alt: 'Manutenção de sistema de ventilação' },
+    { src: foto4, alt: 'Veículo da ARIA Ar Condicionado na Sicredi' },
+    { src: foto5, alt: 'Construção de sistema de climatização' },
+    { src: foto6, alt: 'Componentes de ventilação e filtros' },
+    { src: foto7, alt: 'Técnico realizando manutenção' },
+    { src: foto8, alt: 'Veículo da ARIA Ar Condicionado na Dipesul' },
+    { src: foto9, alt: 'Limpeza e manutenção de sistema HVAC' }
+  ];
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -190,6 +214,63 @@ const Services = () => {
           </div>
         </div>
       </section>
+
+      {/* Service Photos Section */}
+      <section className="section-padding bg-secondary/20">
+        <div className="container-custom">
+          <div className="text-center mb-16 fade-in">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 text-foreground">
+              Fotos de <span className="text-primary">Serviço</span>
+            </h2>
+            <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto px-4">
+              Veja nossos técnicos em ação e os projetos realizados com qualidade e profissionalismo.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
+            {servicePhotos.map((photo, index) => (
+              <div 
+                key={index} 
+                className="relative overflow-hidden rounded-2xl aspect-square cursor-pointer group scale-in bg-muted"
+                onClick={() => setSelectedImage(photo.src)}
+              >
+                <img
+                  src={photo.src}
+                  alt={photo.alt}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="absolute bottom-4 left-4 right-4 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 opacity-0 group-hover:opacity-100">
+                  <p className="text-white font-medium text-sm">{photo.alt}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Modal for image preview */}
+      {selectedImage && (
+        <div className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4" onClick={() => setSelectedImage(null)}>
+          <div className="relative max-w-4xl max-h-[90vh] w-full h-full">
+            <Button 
+              variant="ghost" 
+              size="icon"
+              className="absolute top-4 right-4 z-10 text-white hover:bg-white/20"
+              onClick={() => setSelectedImage(null)}
+            >
+              <X className="h-6 w-6" />
+            </Button>
+            <img
+              src={selectedImage}
+              alt="Visualização da foto"
+              className="w-full h-full object-contain rounded-lg"
+              onClick={(e) => e.stopPropagation()}
+            />
+          </div>
+        </div>
+      )}
 
       {/* CTA Section */}
       <section className="section-padding hero-gradient">
