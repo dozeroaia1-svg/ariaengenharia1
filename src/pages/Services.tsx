@@ -220,10 +220,10 @@ const Services = () => {
         <div className="container-custom">
           <div className="text-center mb-16 fade-in">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 text-foreground">
-              Fotos de <span className="text-primary">Serviço</span>
+              Veja Nossos Serviços em <span className="text-primary">Ação</span>
             </h2>
             <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto px-4">
-              Veja nossos técnicos em ação e os projetos realizados com qualidade e profissionalismo.
+              Acesse nosso portfólio visual e conheça de perto a amplitude e a qualidade dos serviços que oferecemos. Cada imagem representa um projeto concluído com sucesso e o compromisso com a satisfação do cliente.
             </p>
           </div>
 
