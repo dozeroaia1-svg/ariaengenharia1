@@ -18,7 +18,18 @@ import foto9 from '@/assets/services/foto-9.jpg';
 const Services = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   
- 
+  const servicePhotos = [
+    { src: foto1, alt: 'Serviço de climatização executado' },
+    { src: foto2, alt: 'Manutenção de sistema de ar condicionado' },
+    { src: foto3, alt: 'Instalação de equipamento de climatização' },
+    { src: foto4, alt: 'Projeto de sistema de refrigeração' },
+    { src: foto5, alt: 'Serviço técnico especializado' },
+    { src: foto6, alt: 'Manutenção preventiva de equipamentos' },
+    { src: foto7, alt: 'Sistema de climatização industrial' },
+    { src: foto8, alt: 'Instalação e configuração de equipamentos' },
+    { src: foto9, alt: 'Projeto concluído com sucesso' }
+  ];
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
