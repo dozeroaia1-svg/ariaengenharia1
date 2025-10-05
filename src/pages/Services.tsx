@@ -19,15 +19,15 @@ const Services = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   
   const servicePhotos = [
-    { src: foto1, alt: 'Sistema de climatização Carrier' },
-    { src: foto2, alt: 'Análise termográfica de ar condicionado' },
-    { src: foto3, alt: 'Manutenção de sistema de ventilação' },
-    { src: foto4, alt: 'Veículo da ARIA Ar Condicionado na Sicredi' },
-    { src: foto5, alt: 'Construção de sistema de climatização' },
-    { src: foto6, alt: 'Componentes de ventilação e filtros' },
-    { src: foto7, alt: 'Técnico realizando manutenção' },
-    { src: foto8, alt: 'Veículo da ARIA Ar Condicionado na Dipesul' },
-    { src: foto9, alt: 'Limpeza e manutenção de sistema HVAC' }
+    { src: foto1, alt:  },
+    { src: foto2, alt:  },
+    { src: foto3, alt:  },
+    { src: foto4, alt:  },
+    { src: foto5, alt: ],
+    { src: foto6, alt:  },
+    { src: foto7, alt:  },
+    { src: foto8, alt:  },
+    { src: foto9, alt:  }
   ];
   useEffect(() => {
     const observer = new IntersectionObserver(
