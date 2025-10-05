@@ -18,17 +18,7 @@ import foto9 from '@/assets/services/foto-9.jpg';
 const Services = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   
-  const servicePhotos = [
-    { src: foto1, alt:  },
-    { src: foto2, alt:  },
-    { src: foto3, alt:  },
-    { src: foto4, alt:  },
-    { src: foto5, alt: ],
-    { src: foto6, alt:  },
-    { src: foto7, alt:  },
-    { src: foto8, alt:  },
-    { src: foto9, alt:  }
-  ];
+ 
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
